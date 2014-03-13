@@ -1,6 +1,6 @@
 <?php
 $startdate = date("Y-m-d H:i:s");
-$enddate = "2014-03-13 14:56:00";
+$enddate = "2014-06-21 00:00:01";
 
 $diff = strtotime($enddate) - strtotime($startdate);
 $temp = $diff / 86400; // 60 sec/min*60 min/hr*24 hr/day=86400 sec/day 
