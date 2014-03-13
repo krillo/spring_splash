@@ -153,8 +153,7 @@ $startTime = "{$days}:{$hours}:{$minutes}:{$seconds}";
 <div class="wpcf7-response-output wpcf7-display-none wpcf7-mail-sent-ok" role="alert" style="display: block;">Ditt meddelande har skickats. Tack!</div></form></div>
         
         
-        
-        
+     
       </div>
 		</div>
 	</div>
