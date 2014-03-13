@@ -1,0 +1,59 @@
+body {
+	font-family: Georgia,"Times New Roman";
+	font-size: 18px;
+	background-color: #fba919;
+}
+
+#header-image{
+	margin-top: 85px;
+	margin-bottom: 30px;
+	text-align: center;
+}
+
+#header-subtitle{
+	text-align: center;
+}
+
+#social-media{
+	text-align: center;
+}
+
+#counter{
+	height: 77px; 
+	overflow: hidden;
+}
+
+#counter-content{
+padding: 20px 21px 20px 30px;
+background-color: white;
+margin-left: 282px;
+margin-right: 278px;
+margin-top: 40px;
+}
+
+#info-box{
+	margin-top: 100px;
+	margin-bottom: 50px;
+}
+
+#info-img{
+	float:left;
+	margin-right: 25px;
+	margin-left: 25px;
+	margin-bottom: 50px;
+}
+
+#info-text{
+}
+
+#footer{
+	border-top: solid 1px #fff;
+}
+
+.footer-img{
+	float:right;
+	margin-top: 15px;
+	margin-bottom: 50px;
+}
+
+
