@@ -1,6 +1,6 @@
 <?php
 $startdate = date("Y-m-d H:i:s");
-$enddate = "2014-06-21 00:00:01";
+$enddate = "2014-09-13 12:00:01";
 
 $diff = strtotime($enddate) - strtotime($startdate);
 $temp = $diff / 86400; // 60 sec/min*60 min/hr*24 hr/day=86400 sec/day 
@@ -267,27 +267,19 @@ $startTime = "{$days}:{$hours}:{$minutes}:{$seconds}";
               <label class="radio-inline">
                 <input type="radio" id="pren8" name="pren" value="8"> Helår, 8 nr endast <strong>329:-</strong>
               </label>
-
             </div>
           </div>
-
           <div class="form-group">
             <div class="col-sm-3">&nbsp;</div>
             <div class="col-sm-7">
               <button type="submit" class="btn btn-default">Prenumerera</button>
             </div>
           </div>
-
-
-
-
-
         </form>       
       </div>
-    </div>
-    <div class="row clearfix">
-      <div class="col-md-12 column">
-        <div id="info-box">
+      <div class="row clearfix">
+        <div class="col-sm-1">&nbsp;</div>
+        <div class="col-sm-10" id="info-box" >
           <div id="info-img">
             <img src="./img/bg.png" />
           </div>
@@ -304,14 +296,14 @@ $startTime = "{$days}:{$hours}:{$minutes}:{$seconds}";
           </div>
         </div>
       </div>
-      <div class="row clearfix">
-        <div class="col-md-12 column">
-          <div id="footer">
+      <div class="col-sm-1">&nbsp;</div>
+      <div class="clearfix">
+        <div class="row" id="footer">
+          <div class="col-sm-offset-8 col-sm-2">
             <img class="footer-img" src="./img/mediavanner-logo.png" />
           </div>
         </div>
       </div>
     </div>
-  </div>
-</body>
+  </body>
 </html>
