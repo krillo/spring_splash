@@ -59,3 +59,6 @@ margin-bottom: 40px;
 
 
 img{width:100%;}
+
+#address{padding:0;margin-top: 0; margin-bottom: 10px; list-style: none;}
+#address li div{float:left;width:200px;}
