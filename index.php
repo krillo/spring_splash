@@ -172,6 +172,16 @@ $startTime = "{$days}:{$hours}:{$minutes}:{$seconds}";
   </head>
 
   <body>
+    <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id))
+          return;
+        js = d.createElement(s);
+        js.id = id;
+        js.src = "//connect.facebook.net/sv_SE/all.js#xfbml=1&appId=235281526582552";
+        fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));</script>
     <div class="container">
       <div class="row clearfix">
         <div class="col-md-12 column">
@@ -190,7 +200,7 @@ $startTime = "{$days}:{$hours}:{$minutes}:{$seconds}";
       <div class="row clearfix">
         <div class="col-md-12 column">
           <div id="social-media">
-            <!--social media here-->
+            <div class="fb-like" data-href="https://www.facebook.com/magasinspring" data-layout="button_count" data-action="like" data-show-faces="true" data-share="true"></div>
           </div>
         </div>
       </div>
@@ -257,7 +267,7 @@ $startTime = "{$days}:{$hours}:{$minutes}:{$seconds}";
               <label class="radio-inline">
                 <input type="radio" id="pren8" name="pren" value="8"> Helår, 8 nr endast <strong>329:-</strong>
               </label>
-              
+
             </div>
           </div>
 
