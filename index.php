@@ -184,28 +184,52 @@ $startTime = "{$days}:{$hours}:{$minutes}:{$seconds}";
       }(document, 'script', 'facebook-jssdk'));</script>
     <div class="container">
       <div class="row clearfix">
-        <div class="col-md-12 column">
+        <div class="col-sm-12 column">
           <div id="header-image">
             <img src="./img/logo.png" />
           </div>
         </div>
       </div>
       <div class="row clearfix">
-        <div class="col-md-12 column">
+        <div class="col-sm-12 column">
           <div id="header-subtitle">
             <img src="./img/subtitle.png" />
           </div>
         </div>
       </div>
       <div class="row clearfix">
-        <div class="col-md-12 column">
+        <div class="col-sm-12 column">
           <div id="social-media">
-            <div class="fb-like" data-href="https://www.facebook.com/magasinspring" data-layout="button_count" data-action="like" data-show-faces="true" data-share="true"></div>
+            <div class="fb-like" data-href="https://www.facebook.com/magasinspring" data-layout="button_count" data-action="like" data-show-faces="true" data-share="true">
+            </div>
+
+
+            
+              <a href="https://twitter.com/share" class="twitter-share-button" data-via="magasinspring" data-lang="sv" data-hashtags="jagspringer">Tweeta</a>
+              <script>!function(d, s, id) {
+                  var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https';
+                  if (!d.getElementById(id)) {
+                    js = d.createElement(s);
+                    js.id = id;
+                    js.src = p + '://platform.twitter.com/widgets.js';
+                    fjs.parentNode.insertBefore(js, fjs);
+                  }
+                }(document, 'script', 'twitter-wjs');</script>
+            
+
+            <style>.ig-b- { display: inline-block; }
+              .ig-b- img { visibility: hidden; }
+              .ig-b-:hover { background-position: 0 -60px; } .ig-b-:active { background-position: 0 -120px; }
+              .ig-b-v-24 { width: 137px; height: 24px; background: url(//badges.instagram.com/static/images/ig-badge-view-sprite-24.png) no-repeat 0 0; }
+              @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2 / 1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
+                .ig-b-v-24 { background-image: url(//badges.instagram.com/static/images/ig-badge-view-sprite-24@2x.png); background-size: 160px 178px; } }</style>
+            <a href="http://instagram.com/magasinspring?ref=badge" class="ig-b- ig-b-v-24"><img src="//badges.instagram.com/static/images/ig-badge-view-24.png" alt="Instagram" /></a>
+
           </div>
         </div>
       </div>
       <div class="row clearfix">
-        <div class="col-md-12 column">
+        <div class="col-sm-12 column">
           <div id="counter-content">
             <div id="counter"></div> 
           </div>
