@@ -46,15 +46,17 @@ $order->zip  $order->city
 Email: $order->email
 Fler erbjudanden: $order->spam       
 MSG;
-die();
+
 
 rep_saveToLogFile(rep_getLogFileName(), "\r\n". $message ."\r\n\r\n", 'INFO');
 
+die();
+/*
 include __DIR__ . '/../wp-config.php';
 $success = wp_mail($to_email, $title, $message);
 $response = json_encode(array('success' => $success));
 $response = 1;
-
+*/
 
 /**** This is the non-WP version ****/
 /*
