@@ -1,9 +1,6 @@
 <?php
 //print_r($_REQUEST);
 //error_reporting(E_ALL);
-//ini_set('display_errors', '1');
-//print_r($GLOBALS );               //display all wp-globals 
-
 
 $order = new stdClass;
 !empty($_REQUEST['firstname']) ? $order->fname = $_REQUEST['firstname'] : $order->fname = '';
@@ -28,15 +25,6 @@ $from_email = "info@magasinspring.se";
 $from_name = "Pren";
 $title = "Prenumeration på Spring, $order->pren nr";
 $date = date("Y-m-d H:i:s");
-$pren = 0;
-if ($order->pren != 0) {
-  $pren = 3;
-}
-if ($order->eight != 0) {
-  $pren = 8;
-}
-
-
 
 
 // This is the WP-version 
@@ -51,9 +39,6 @@ Fler erbjudanden: $order->spam
 MSG;
 
 rep_saveToLogFile(rep_getLogFileName(), "\r\n". $message ."\r\n\r\n", 'INFO');
-
-
-
 include __DIR__ . '/../wp-config.php';
 $success = wp_mail($to_email, $title, $message);
 $response = json_encode(array('success' => $success));
