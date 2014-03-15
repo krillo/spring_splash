@@ -1,10 +1,10 @@
 <?php
 //print_r($_REQUEST);
-error_reporting(E_ALL);
-ini_set('display_errors', '1');
+//error_reporting(E_ALL);
+//ini_set('display_errors', '1');
 //print_r($GLOBALS );               //display all wp-globals 
 
-/*
+
 $order = new stdClass;
 !empty($_REQUEST['firstname']) ? $order->fname = $_REQUEST['firstname'] : $order->fname = '';
 !empty($_REQUEST['lastname']) ? $order->lname = $_REQUEST['lastname'] : $order->lname = '';
@@ -36,9 +36,9 @@ if ($order->eight != 0) {
   $pren = 8;
 }
 
-*/
 
-/*
+
+
 // This is the WP-version 
 $message = <<<MSG
 Prenumeration på $order->pren nummer av Spring 
@@ -50,18 +50,15 @@ Email: $order->email
 Fler erbjudanden: $order->spam       
 MSG;
 
-*/
-$message = 'apa';
-
 rep_saveToLogFile(rep_getLogFileName(), "\r\n". $message ."\r\n\r\n", 'INFO');
 
 
-/*
+
 include __DIR__ . '/../wp-config.php';
 $success = wp_mail($to_email, $title, $message);
 $response = json_encode(array('success' => $success));
 $response = 1;
-*/
+
 
 // This is the non-WP version 
 /*
@@ -72,11 +69,11 @@ $message .= "$order->street" . "<br>";
 $message .= "$order->zip  $order->city" . "<br>";
 $message .= "Email: $order->email" . "<br>";
 $message .= "Fler erbjudanden: $order->spam" . "<br><br>"; 
-
+ * 
 rep_saveToLogFile(rep_getLogFileName(), "Prenumerations-email: \r\n" . $message, 'INFO');
 $success = rep_sendMail($title, $message, $to_email, $to_name, $from_email, $from_name);
 $response = json_encode($success ? '1' : '0');
-* /
+*/
 
 header('Cache-Control: no-cache, must-revalidate');
 header('Expires: Mon, 26 Jul 1997 05:00:00 GMT');
@@ -84,7 +81,6 @@ header('Content-type: application/json');
 echo $response;
 die();
 
-*/
 
 
 /**
