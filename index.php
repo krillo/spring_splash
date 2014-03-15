@@ -70,6 +70,7 @@ $startTime = "{$days}:{$hours}:{$minutes}:{$seconds}";
 
 
         //start the counter
+        //https://github.com/Reflejo/jquery-countdown
         $('#counter').countdown({
           image: 'img/digits.png',
           startTime: '<?php echo $startTime; ?>',
@@ -77,8 +78,7 @@ $startTime = "{$days}:{$hours}:{$minutes}:{$seconds}";
           format: 'ddd:hh:mm:ss',
           digitImages: 6,
           digitWidth: 53,
-          digitHeight: 77
-
+          digitHeight: 77, 
         });
 
         // bind 'myForm' and provide a simple callback function 
