@@ -17,10 +17,10 @@ $order = new stdClass;
 !empty($_REQUEST['pren']) ? $order->pren = $_REQUEST['pren'] : $order->pren = '0';
 
 
-$to_email = "kristian@reptilo.se";
-$to_name = "Kristian Reptilo";
-//$to_email = "malin.gelberg@mediavanner.se";
-//$to_name = "Malin Gelberg";
+//$to_email = "kristian@reptilo.se";
+//$to_name = "Kristian Reptilo";
+$to_email = "malin.gelberg@mediavanner.se";
+$to_name = "Malin Gelberg";
 $from_email = "info@magasinspring.se";
 $from_name = "Pren";
 $title = "Prenumeration på Spring, $order->pren nr";
