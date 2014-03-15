@@ -246,7 +246,7 @@ $startTime = "{$days}:{$hours}:{$minutes}:{$seconds}";
         <div class="col-sm-3">&nbsp;</div>
       </div>
       <div class="row clearfix">
-        <form id="pren-form" action="/splash/sendmail.php" method="post" class="form-horizontal">
+        <form id="pren-form" action="sendmail.php" method="post" class="form-horizontal">
           <div class="form-group">
             <div class="col-sm-1">&nbsp;</div>
             <label for="name" class="col-sm-2 control-label">Namn* </label>
