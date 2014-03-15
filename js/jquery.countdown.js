@@ -1,12 +1,195 @@
 /*
- * jquery-counter plugin
+ * jquery-countdown plugin
  *
  * Copyright (c) 2009 Martin Conte Mac Donell <Reflejo@gmail.com>
  * Dual licensed under the MIT and GPL licenses.
  * http://docs.jquery.com/License
+ *
  */
-jQuery.fn.countdown = function(userOptions)
-{
+
+// Draw digits in given container
+var createDigits = function(where, options) {
+  var counter = 0;
+  // Iterate each startTime digit, if it is not a digit
+  // we'll asume that it's a separator
+  var mFirstPos, sFirstPos;
+  // reset digits and intervals array.
+  digits = [];
+  intervals = [];
+
+  for (var i = 0; i < options.startTime.length; i++) {
+    if (parseInt(options.startTime[i]) >= 0) {
+      elem = $('<div id="cnt_' + counter + '" class="cntDigit" />').css({
+	height: options.digitHeight,
+	float: 'left',
+	background: 'url(\'' + options.image + '\')',
+	width: options.digitWidth
+      });
+
+      elem.current = parseInt(options.startTime[i]);
+      digits.push(elem);
+
+      margin(counter, -elem.current * options.digitHeight * options.digitImages);
+
+      if (options.continuous === true) {
+	digits[counter]._max = function() { return 9; };
+      } else {
+	// Add max digits, for example, first digit of minutes (mm) has
+	// a max of 5. Conditional max is used when the left digit has reach
+	// the max. For example second "hours" digit has a conditional max of 4
+	switch (options.format[i]) {
+	  case 'h':
+	    digits[counter]._max = function(pos, isStart) {
+	      if (pos % 2 == 0)
+		return 2;
+	      else
+		return (isStart) ? 3: 9;
+	    };
+	    break;
+	  case 'd':
+	    digits[counter]._max = function() { return 9; };
+	    break;
+	  case 'm':
+	    digits[counter]._max = function(pos) {
+	      if(!mFirstPos) { mFirstPos = pos; } 
+	      return pos == mFirstPos ? 9 : 5;
+	    };
+	    break;
+	  case 's':
+	    digits[counter]._max = function(pos) {
+	      if(!sFirstPos) { sFirstPos = pos; } 
+	      return pos == sFirstPos ? 9 : 5;
+	    };
+	}
+      }
+
+      counter += 1;
+    } else {
+      elem = $('<div class="cntSeparator"/>').css({float: 'left'})
+					     .text(options.startTime[i]);
+    }
+    where.append(elem)
+  }
+};
+
+var makeMovement = function(elem, steps, isForward, options) {
+  // Stop any other movement over the same digit.
+  if (intervals[elem])
+    window.clearInterval(intervals[elem]);
+
+  // Move to the initial position (We force that because in chrome
+  // there are some scenarios where digits lost sync)
+  var initialPos = -(options.digitHeight * options.digitImages *
+		     digits[elem].current);
+  margin(elem, initialPos);
+  digits[elem].current = digits[elem].current + ((isForward) ? steps: -steps);
+
+  var x = 0;
+  intervals[elem] = setInterval(function() {
+    if (x++ === options.digitImages * steps) {
+      window.clearInterval(intervals[elem]);
+      delete intervals[elem];
+      return;
+    }
+
+    var diff = isForward ? -options.digitHeight: options.digitHeight;
+    margin(elem, initialPos + (x * diff));
+  }, options.stepTime / steps);
+};
+
+// Set or get element margin
+var margin = function(elem, val) {
+  if (val !== undefined) {
+    digits[elem].margin = val;
+    return digits[elem].css({'backgroundPosition': '0 ' + val + 'px'});
+  }
+
+  return digits[elem].margin || 0;
+};
+
+
+// Makes the movement. This is done by "digitImages" steps.
+var moveDigit = function(elem, options) {
+  if (digits[elem].current == 0) {
+    // Is there still time left?
+    if (elem > 0) {
+      var isStart = (digits[elem - 1].current == 0);
+
+      makeMovement(elem, digits[elem]._max(elem, isStart), true, options);
+      moveDigit(elem - 1, options);
+    } else { // That condition means that we reach the end! 00:00.
+      for (var i = 0; i < digits.length; i++) {
+	clearInterval(intervals[i]);
+	clearInterval(intervals.main);
+	margin(i, 0);
+      }
+      options.timerEnd();
+    }
+    return;
+  }
+  makeMovement(elem, 1, false, options);
+};
+
+
+
+// parses a date of the form hh:mm:ss, for example, where
+// ... precision is the same as the format.
+var parseRelativeDate = function(form, options) {
+  // give the date the values of now by default
+  var now = new Date();
+  var d = now.getDate();
+  var m = now.getMonth() + 1;
+  var y = now.getFullYear();
+  var h = now.getHours(), mm, s;
+
+  // read in components and render based on format
+  var format = options.format;
+  var parts = form.split(':');
+  if( format.indexOf('dd') == 0 ) {
+      d = parts[0];
+      parts = parts.slice(1);
+      format = format.substr(3);
+  }
+  if( format.indexOf('hh') == 0 ) {
+      h = parts[0];
+      parts = parts.slice(1);
+      format = format.substr(3);
+  }
+  if( format.indexOf('mm') == 0 ) {
+      mm = parts[0];
+      parts = parts.slice(1);
+      format = format.substr(3);
+  }
+  if( format.indexOf('ss') == 0 ) {
+      s = parts[0];
+      parts = parts.slice(1);
+      format = format.substr(3);
+  }
+  // return our constructed date object
+  return new Date([m, d, y].join('/') + ' ' + [h, mm, s].map(pad).join(':') + ' GMT-0900');
+};
+
+
+// convert a date object to the format specified
+var formatCompute = function(d, options) {
+      var format = options.format;
+      var parse = {
+	d: d.getUTCDate() - 1,
+	h: d.getUTCHours(),
+	m: d.getUTCMinutes(),
+	s: d.getUTCSeconds()
+      };
+      return format.replace(/(dd|hh|mm|ss)/g, function($0, form) {
+	      return pad(parse[form[0]]);
+      });
+};
+
+// add leading zeros
+var pad = function(x){return (1e15+""+x).substr(-2)};
+
+var digits = [];
+var intervals = [];
+jQuery.fn.countdown = function(userOptions) {
   // Default options
   var options = {
     stepTime: 60,
@@ -15,98 +198,28 @@ jQuery.fn.countdown = function(userOptions)
     format: "dd:hh:mm:ss",
     startTime: "01:12:32:55",
     digitImages: 6,
-    digitWidth: 53,
-    digitHeight: 77,
+    digitWidth: 67,
+    digitHeight: 90,
     timerEnd: function(){},
-    image: "digits.png"
+    image: "digits.png",
+    continuous: false
   };
-  var digits = [], interval;
-
-  // Draw digits in given container
-  var createDigits = function(where) 
-  {
-    var c = 0;
-    // Iterate each startTime digit, if it is not a digit
-    // we'll asume that it's a separator
-    for (var i = 0; i < options.startTime.length; i++)
-    {
-      if (parseInt(options.startTime[i]) >= 0) 
-      {
-        elem = $('<div id="cnt_' + i + '" class="cntDigit" />').css({
-          height: options.digitHeight * options.digitImages * 10, 
-          float: 'left', background: 'url(\'' + options.image + '\')',
-          width: options.digitWidth});
-        digits.push(elem);
-        margin(c, -((parseInt(options.startTime[i]) * options.digitHeight *
-                              options.digitImages)));
-        digits[c].__max = 9;
-        // Add max digits, for example, first digit of minutes (mm) has 
-        // a max of 5. Conditional max is used when the left digit has reach
-        // the max. For example second "hours" digit has a conditional max of 4 
-        switch (options.format[i]) {
-          case 'h':
-            digits[c].__max = (c % 2 == 0) ? 2: 9;
-            if (c % 2 == 0)
-              digits[c].__condmax = 4;
-            break;
-          case 'd': 
-            digits[c].__max = 9;
-            break;
-          case 'm':
-          case 's':
-            digits[c].__max = (c % 2 == 0) ? 5: 9;
-        }
-        ++c;
-      }
-      else 
-        elem = $('<div class="cntSeparator"/>').css({float: 'left'})
-                .text(options.startTime[i]);
-
-      where.append(elem)
-    }
-  };
-  
-  // Set or get element margin
-  var margin = function(elem, val) 
-  {
-    if (val !== undefined)
-      return digits[elem].css({'marginTop': val + 'px'});
-
-    return parseInt(digits[elem].css('marginTop').replace('px', ''));
-  };
-
-  // Makes the movement. This is done by "digitImages" steps.
-  var moveStep = function(elem) 
-  {
-    digits[elem]._digitInitial = -(digits[elem].__max * options.digitHeight * options.digitImages);
-    return function _move() {
-      mtop = margin(elem) + options.digitHeight;
-      if (mtop == options.digitHeight) {
-        margin(elem, digits[elem]._digitInitial);
-        if (elem > 0) moveStep(elem - 1)();
-        else 
-        {
-          clearInterval(interval);
-          for (var i=0; i < digits.length; i++) margin(i, 0);
-          options.timerEnd();
-          return;
-        }
-        if ((elem > 0) && (digits[elem].__condmax !== undefined) && 
-            (digits[elem - 1]._digitInitial == margin(elem - 1)))
-          margin(elem, -(digits[elem].__condmax * options.digitHeight * options.digitImages));
-        return;
-      }
-
-      margin(elem, mtop);
-      if (margin(elem) / options.digitHeight % options.digitImages != 0)
-        setTimeout(_move, options.stepTime);
-
-      if (mtop == 0) digits[elem].__ismax = true;
-    }
-  };
-
   $.extend(options, userOptions);
-  this.css({height: options.digitHeight, overflow: 'hidden'});
-  createDigits(this);
-  interval = setInterval(moveStep(digits.length - 1), 1000);
+
+  // if an endTime is provided...
+  if( userOptions.endTime ) {
+    // calculate the difference between endTime and present time
+    var endDate = userOptions.endTime instanceof Date ? userOptions.endTime : parseRelativeDate(userOptions.endTime, options);
+    var diff = endDate.getTime() - (new Date()).getTime();
+  	// and set that as the startTime
+    userOptions.startTime = formatCompute(new Date(diff), options);
+    delete userOptions.endTime;
+  }
+  $.extend(options, userOptions);
+  if (this.length) {
+    clearInterval(intervals.main);
+    createDigits(this, options);
+    intervals.main = setInterval(function(){ moveDigit(digits.length - 1, options); },
+                                 1000);
+  }
 };

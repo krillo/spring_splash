@@ -67,10 +67,18 @@ $startTime = "{$days}:{$hours}:{$minutes}:{$seconds}";
     <script type="text/javascript">
       jQuery(function($) {
 
+
+
         //start the counter
         $('#counter').countdown({
           image: 'img/digits.png',
-          startTime: '<?php echo $startTime; ?>'
+          startTime: '<?php echo $startTime; ?>',
+          stepTime: 60,
+          format: 'ddd:hh:mm:ss',
+          digitImages: 6,
+          digitWidth: 53,
+          digitHeight: 77
+
         });
 
         // bind 'myForm' and provide a simple callback function 
