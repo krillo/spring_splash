@@ -238,7 +238,7 @@ $startTime = "{$days}:{$hours}:{$minutes}:{$seconds}";
           </div>
         </div>
       </div>
-      <div class="row clearfix">
+      <div class="row clearfix" id="counter-area">
         <div class="col-sm-12 column">
           <div id="counter-content">
             <div id="counter"></div> 

@@ -87,3 +87,9 @@ label.error {
   padding: 2px 8px;
   margin-top: 2px;
 }
+
+@media all and (max-width: 767px){
+  #counter {display:none;}
+  #counter-area{display:none;}
+  .row {margin-right: 0;margin-left: 0;}
+}
