@@ -32,7 +32,7 @@ $startTime = "{$days}:{$hours}:{$minutes}:{$seconds}";
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Bootstrap 3, from LayoutIt!</title>
+    <title>Spring</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -56,94 +56,96 @@ $startTime = "{$days}:{$hours}:{$minutes}:{$seconds}";
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="img/apple-touch-icon-114-precomposed.png">
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="img/apple-touch-icon-72-precomposed.png">
     <link rel="apple-touch-icon-precomposed" href="img/apple-touch-icon-57-precomposed.png">
-    <link rel="shortcut icon" href="img/favicon.png">
+    <link rel="shortcut icon" href="img/favicon.ico?v=2">
 
     <script type="text/javascript" src="./js/jquery.min.js"></script>
     <script type="text/javascript" src="./js/bootstrap.min.js"></script>
     <script type="text/javascript" src="./js/scripts.js"></script>
-    <script type="text/javascript" src="./js/jquery.countdown.js"></script>
+    <script type="text/javascript" src="http://jzaefferer.github.com/jquery-validation/jquery.validate.js"></script>
+    <script src="http://malsup.github.com/jquery.form.js"></script>
+    <script type="text/javascript" src="./js/jquery.countdown.js"></script>    
     <script type="text/javascript">
-      $(function() {
+      jQuery(function($) {
+
+        //start the counter
         $('#counter').countdown({
           image: 'img/digits.png',
           startTime: '<?php echo $startTime; ?>'
         });
 
-
-      });
-    </script>
-    <script type="text/javascript" src="http://jzaefferer.github.com/jquery-validation/jquery.validate.js"></script>
-    <script type="text/javascript">
-      jQuery(function($) {
-
-        /******************************
-         * Events
-         ******************************/
-        /*
-         $('.count').change(function() {
-         var self = jQuery(this);
-         count = self.val();
-         id = self.attr('id');
-         price = $('#price-' + id).html();
-         price = price * count * 0.1;
-         price = parseFloat(price).toFixed(2);
-         $('#sum-' + id).html(price);
-         
-         
-         
-         //sumShort = parseInt(shortRadio) + parseInt(shortCheck);  
-         var total = 0;
-         $(".article-sum").each(function(i) {
-         article_sum = parseFloat(this.innerHTML);
-         total += article_sum;
-         });
-         //total = Math.ceil(total * 10) / 10;
-         $('#total-sum').html(total);
-         
-         });
-         */
-
-
-        $('form').on('submit', function(e) {
-          e.preventDefault();
-          var validator = $("#pren").validate({
-            errorClass: "invalid",
-            validClass: "valid",
-            messages: {
-              "name": {
-                required: 'Saknas'
-              },
-              "street1": {
-                required: 'Saknas'
-              },
-              "zip": {
-                required: 'Saknas'
-              },
-              "city": {
-                required: 'Saknas'
-              },
-              "phone": {
-                required: 'Saknas'
-              },
-              "email": {
-                required: 'Saknas',
-                email: 'Felaktig'
-              }
-            },
-            submitHandler: function(form) {
-              reponse = $.post('sendmail.php', $('#pren').serialize());
-              alert(reponse);
-            }
-          });
-
-
+        // bind 'myForm' and provide a simple callback function 
+        $('#myForm').ajaxForm(function() {
+          alert("Thank you for your comment!");
         });
 
-        /*
-         jQuery("#pren").click(function(event) {
-         event.preventDefault();
-         });
-         */
+
+        //validate the form
+        $("#msg-ok").hide();
+        var validator = $("#pren-form").validate({
+          //debug: true,
+          rules: {
+            name: {
+              required: true
+            },
+            street1: {
+              required: true
+            },
+            zip: {
+              required: true
+            },
+            city: {
+              required: true
+            },
+            phone: {
+              required: true
+            },
+            email: {
+              required: true,
+              email: true
+            }
+          },
+          messages: {
+            name: "",
+            street1: "",
+            zip: "",
+            city: "",
+            phone: "",
+            email: {
+              required: "",
+              email: 'Felaktig emailadress'
+            }
+          }, submitHandler: function(form) {
+            $("#pren-button").button('loading');
+            $(form).ajaxSubmit(function(response) {
+              //dont bother to check for response because the plugin Gatekeeper spoils the return status... 
+              $("#pren-button").button('reset');
+              $("#msg-ok").show();
+            });
+          },
+          highlight: function(element) {
+            $(element).closest('.form-group').addClass('has-error');
+          },
+          unhighlight: function(element) {
+            $(element).closest('.form-group').removeClass('has-error');
+          },
+          errorElement: 'span',
+          errorClass: 'help-block',
+          errorPlacement: function(error, element) {
+            if (element.parent('.input-group').length) {
+              error.insertAfter(element.parent());
+            } else {
+              error.insertAfter(element);
+            }
+          }
+        });
+
+
+
+
+
+
+
+
 
 
       });
@@ -204,18 +206,18 @@ $startTime = "{$days}:{$hours}:{$minutes}:{$seconds}";
             </div>
 
 
-            
-              <a href="https://twitter.com/share" class="twitter-share-button" data-via="magasinspring" data-lang="sv" data-hashtags="jagspringer">Tweeta</a>
-              <script>!function(d, s, id) {
-                  var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https';
-                  if (!d.getElementById(id)) {
-                    js = d.createElement(s);
-                    js.id = id;
-                    js.src = p + '://platform.twitter.com/widgets.js';
-                    fjs.parentNode.insertBefore(js, fjs);
-                  }
-                }(document, 'script', 'twitter-wjs');</script>
-            
+
+            <a href="https://twitter.com/share" class="twitter-share-button" data-via="magasinspring" data-lang="sv" data-hashtags="jagspringer">Tweeta</a>
+            <script>!function(d, s, id) {
+                var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https';
+                if (!d.getElementById(id)) {
+                  js = d.createElement(s);
+                  js.id = id;
+                  js.src = p + '://platform.twitter.com/widgets.js';
+                  fjs.parentNode.insertBefore(js, fjs);
+                }
+              }(document, 'script', 'twitter-wjs');</script>
+
 
             <style>.ig-b- { display: inline-block; }
               .ig-b- img { visibility: hidden; }
@@ -235,8 +237,16 @@ $startTime = "{$days}:{$hours}:{$minutes}:{$seconds}";
           </div>
         </div>
       </div>
+      <div class="row clearfix" id="subscribe">
+        <div class="col-sm-2">&nbsp;</div>
+        <div class="col-sm-7 ">
+          <strong>Var med redan från början!</strong> första nummret kommer den 15/9.
+          Beställ redan idag så du inte missar något nummer!
+        </div>
+        <div class="col-sm-3">&nbsp;</div>
+      </div>
       <div class="row clearfix">
-        <form id="pren" action="/splash/sendmail.php" method="post" class="form-horizontal">
+        <form id="pren-form" action="/splash/sendmail.php" method="post" class="form-horizontal">
           <div class="form-group">
             <div class="col-sm-1">&nbsp;</div>
             <label for="name" class="col-sm-2 control-label">Namn* </label>
@@ -245,7 +255,6 @@ $startTime = "{$days}:{$hours}:{$minutes}:{$seconds}";
             </div>
             <div class="col-sm-3">&nbsp;</div>
           </div>
-
           <div class="form-group">
             <div class="col-sm-1">&nbsp;</div>
             <label for="adress" class="col-sm-2 control-label">Adress* </label>
@@ -254,7 +263,6 @@ $startTime = "{$days}:{$hours}:{$minutes}:{$seconds}";
             </div>
             <div class="col-sm-3">&nbsp;</div>
           </div>
-
           <div class="form-group">
             <div class="col-sm-1"></div>
             <label for="zip" class="col-sm-2 control-label">Postnummer* </label>
@@ -263,7 +271,6 @@ $startTime = "{$days}:{$hours}:{$minutes}:{$seconds}";
             </div>
             <div class="col-sm-3"></div>
           </div>
-
           <div class="form-group">
             <div class="col-sm-1"></div>
             <label for="city" class="col-sm-2 control-label">Stad* </label>
@@ -272,16 +279,14 @@ $startTime = "{$days}:{$hours}:{$minutes}:{$seconds}";
             </div>
             <div class="col-sm-3"></div>
           </div>
-
           <div class="form-group">
             <div class="col-sm-1"></div>
             <label for="email" class="col-sm-2 control-label">Email* </label>
             <div class="col-sm-6">
-              <input type="text" class="form-control" name="email" id="email" id="city" placeholder="Email">
+              <input type="text" class="form-control" name="email" id="email"  placeholder="Email">
             </div>
             <div class="col-sm-3"></div>
           </div>
-
           <div class="form-group">
             <div class="col-sm-3">&nbsp;</div>
             <div class="col-sm-7">
@@ -289,14 +294,23 @@ $startTime = "{$days}:{$hours}:{$minutes}:{$seconds}";
                 <input type="radio" id="pren3" name="pren" value="3"> 3 nr för <strong>129:-</strong>
               </label>
               <label class="radio-inline">
-                <input type="radio" id="pren8" name="pren" value="8"> Helår, 8 nr endast <strong>329:-</strong>
+                <input type="radio" id="pren8" name="pren" value="8" checked > Helår, 8 nr endast <strong>329:-</strong>
               </label>
             </div>
           </div>
           <div class="form-group">
             <div class="col-sm-3">&nbsp;</div>
             <div class="col-sm-7">
-              <button type="submit" class="btn btn-default">Prenumerera</button>
+              <label class="checkbox-inline">
+                <input type="checkbox" id="spam" value="JA" name="spam">Skicka mig gärna fler erbjudanden från Spring!
+              </label>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-sm-3">&nbsp;</div>
+            <div class="col-sm-7">
+              <!--button type="submit" class="btn btn-default">Prenumerera</button-->
+              <input type="submit" class="btn btn-default" value="Prenumerera" id="pren-button" data-loading-text="Skickar..." /><span id="msg-ok"> Din beställning är skickad.</span>
             </div>
           </div>
         </form>       

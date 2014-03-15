@@ -52,7 +52,8 @@ margin-bottom: 40px;
 
 .fb-like span{vertical-align: top!important;}
 .fb-like{margin-right: 20px;}
-
+ 
+#subscribe{margin-bottom: 10px;}
 
 
 #footer{
@@ -71,3 +72,18 @@ margin-bottom: 40px;
 #address{padding:0;margin-top: 0; margin-bottom: 10px; list-style: none;}
 #address li div{float:left;width:200px;}
 #pren{}
+
+
+label.valid {
+  width: 24px;
+  height: 24px;
+  background: url(assets/img/valid.png) center center no-repeat;
+  display: inline-block;
+  text-indent: -9999px;
+}
+label.error {
+  font-weight: bold;
+  color: red;
+  padding: 2px 8px;
+  margin-top: 2px;
+}
