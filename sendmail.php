@@ -1,5 +1,9 @@
 <?php
 //print_r($_REQUEST);
+error_reporting(E_ALL);
+ini_set('display_errors', '1');
+//print_r($GLOBALS );               //display all wp-globals 
+
 $order = new stdClass;
 !empty($_REQUEST['firstname']) ? $order->fname = $_REQUEST['firstname'] : $order->fname = '';
 !empty($_REQUEST['lastname']) ? $order->lname = $_REQUEST['lastname'] : $order->lname = '';
@@ -42,7 +46,7 @@ $order->zip  $order->city
 Email: $order->email
 Fler erbjudanden: $order->spam       
 MSG;
-
+die();
 
 rep_saveToLogFile(rep_getLogFileName(), "\r\n". $message ."\r\n\r\n", 'INFO');
 
