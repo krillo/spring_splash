@@ -330,7 +330,7 @@ $startTime = "{$days}:{$hours}:{$minutes}:{$seconds}";
             <img src="./img/bg.png" />
           </div>
           <div id="info-text">
-            <h1>Chefsredaktören har ordet</h1>
+            <h1>Chefredaktören har ordet</h1>
             <p>
               När jag startade förlaget Mediavänner i oktober var en viktig ingrediens lust. 
               Att få jobba med mitt stora intresse löpning inom ramarna för vad bolaget gör är helt 
