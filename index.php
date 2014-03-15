@@ -330,14 +330,21 @@ $startTime = "{$days}:{$hours}:{$minutes}:{$seconds}";
             <img src="./img/bg.png" />
           </div>
           <div id="info-text">
-            <h1>Chefredaktören har ordet</h1>
+            <h1>Chefredaktör & löpare BG Nilensjö har ordet.</h1>
             <p>
-              När jag startade förlaget Mediavänner i oktober var en viktig ingrediens lust. 
-              Att få jobba med mitt stora intresse löpning inom ramarna för vad bolaget gör är helt 
-              enkelt grymt! Spring är en löpartidning som kommer ge massor av inspiration och löparglädje 
-              till läsarna. Ambitionen är att det ska vara en viktig pusselbit för löparna, att Spring 
-              ska motivera och faktiskt ge ståpäls - Spring ska uppfattas som seriös, passionerad och 
-              grymt motiverande.
+              När jag startade förlaget Mediavänner i oktober var lust en viktig ingrediens. Att nu få jobba med mitt stora intresse, löpning, inom ramarna för vad 
+              bolaget gör är helt enkelt grymt! Min ambition är att Spring ska vara magasinet ingen löpare kan vara utan, den där sista pusselbiten som krävs för att 
+              nå nya mål. Sprängfyllt med träning, både fysisk och mental, löpare, tävlingar, resultat, krönikor, kost och läsarmaterial. Allt med stenhårt fokus på 
+              löpning! Vi vill även lyfta fram löparföreningar i hela vårt avlånga land. Spring ska ge massor av inspiration och löparglädje, vara passionerad och 
+              grymt motiverande!<br><br>
+ 
+              Redaktionens ambition kommer vara att Du som läser ska ta på dig skorna och ge dig ut på ett pass så fort du läst klart. För att klara detta vill vi ha 
+              en dialog med alla där ute som just har ambitionen att nå nya mål. Tidningen har premiär i september men redan nu finns vi på facebook och om några 
+              månader öppnar sajten – spring med!<br><br>
+ 
+              Teckna dig för en prenumeration – du kommer inte att ångra dig <br><br>
+ 
+              Härliga löparhälsningar/BGN
             </p>
           </div>
         </div>
