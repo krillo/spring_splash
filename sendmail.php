@@ -38,6 +38,7 @@ if ($order->eight != 0) {
 
 */
 
+/*
 // This is the WP-version 
 $message = <<<MSG
 Prenumeration på $order->pren nummer av Spring 
@@ -49,10 +50,12 @@ Email: $order->email
 Fler erbjudanden: $order->spam       
 MSG;
 
+*/
+$message = 'apa';
 
 rep_saveToLogFile(rep_getLogFileName(), "\r\n". $message ."\r\n\r\n", 'INFO');
 
-die();
+
 /*
 include __DIR__ . '/../wp-config.php';
 $success = wp_mail($to_email, $title, $message);
