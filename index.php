@@ -109,7 +109,7 @@ $startTime = "{$days}:{$hours}:{$minutes}:{$seconds}";
               required: true
             },
             email: {
-              required: true,
+              //required: true,
               email: true
             }
           },
@@ -120,7 +120,7 @@ $startTime = "{$days}:{$hours}:{$minutes}:{$seconds}";
             city: "",
             phone: "",
             email: {
-              required: "",
+              //required: "",
               email: 'Felaktig emailadress'
             }
           }, submitHandler: function(form) {
