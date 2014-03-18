@@ -249,7 +249,7 @@ $startTime = "{$days}:{$hours}:{$minutes}:{$seconds}";
       <div class="row clearfix" id="subscribe">
         <div class="col-sm-2">&nbsp;</div>
         <div class="col-sm-7 ">
-          <strong>Var med redan från början!</strong> första nummret kommer den 15/9.
+          <strong>Var med redan från början!</strong> första numret kommer den 15/9.
           Beställ redan idag så du inte missar något nummer!
         </div>
         <div class="col-sm-3">&nbsp;</div>
