@@ -45,6 +45,31 @@ $response = json_encode(array('success' => $success));
 $response = 1;
 
 
+
+//send a email to prenumeranten as well
+$to_email = $order->email;
+$to_name = $order->name;
+$from_email = "info@magasinspring.se";
+$from_name = "Info";
+$title = "Prenumeration på Spring, $order->pren nr";
+$date = date("Y-m-d H:i:s");
+$message = <<<MSG
+Tack för din beställning. Ditt första nummer kommer den 15 september, då kommer även fakturan. Fram till dess håll koll på vår FB sida där du löpande får information om vad som händer i projektet: www.facebook.com/magasinspring
+
+Ha en härlig sommar med förhoppningsvis många underbara löpupplevlser
+
+BG Nilensjö
+Chefredaktör magasinet Spring
+MSG;
+rep_saveToLogFile(rep_getLogFileName(), "\r\n". $message ."\r\n\r\n", 'INFO');
+include __DIR__ . '/../wp-config.php';
+$success = wp_mail($to_email, $title, $message);
+//$response = json_encode(array('success' => $success));
+//$response = 1;
+
+
+
+
 // This is the non-WP version 
 /*
 $message = "Prenumeration på $order->pren nummer av Spring" . "<br>";  
