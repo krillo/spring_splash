@@ -61,7 +61,7 @@ Ha en härlig sommar med förhoppningsvis många underbara löpupplevlser
 BG Nilensjö
 Chefredaktör magasinet Spring
 MSG;
-rep_saveToLogFile(rep_getLogFileName(), "\r\n". $message ."\r\n\r\n", 'INFO');
+rep_saveToLogFile(rep_getLogFileName(), "\r\n". $to_name . "  " . $from_email ."\r\n". $message ."\r\n\r\n", 'INFO');
 include __DIR__ . '/../wp-config.php';
 $success = wp_mail($to_email, $title, $message);
 //$response = json_encode(array('success' => $success));
