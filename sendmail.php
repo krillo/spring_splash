@@ -54,15 +54,17 @@ $from_name = "Info";
 $title = "Prenumeration på Spring, $order->pren nr";
 $date = date("Y-m-d H:i:s");
 $message = <<<MSG
-Tack för din beställning. Ditt första nummer kommer den 15 september, då kommer även fakturan. Fram till dess håll koll på vår FB sida där du löpande får information om vad som händer i projektet: www.facebook.com/magasinspring
+Tack för din beställning. 
 
-Ha en härlig sommar med förhoppningsvis många underbara löpupplevlser
+Ditt första nummer kommer den 15 september, då kommer även fakturan. Fram till dess håll koll på vår FB sida där du löpande får information om vad som händer i projektet: www.facebook.com/magasinspring
 
+Ha en härlig sommar med förhoppningsvis många underbara löpupplevelser
+
+        
 BG Nilensjö
 Chefredaktör magasinet Spring
 MSG;
 rep_saveToLogFile(rep_getLogFileName(), "\r\n". $to_name . "  " . $from_email ."\r\n". $message ."\r\n\r\n", 'INFO');
-include __DIR__ . '/../wp-config.php';
 $success = wp_mail($to_email, $title, $message);
 //$response = json_encode(array('success' => $success));
 //$response = 1;
