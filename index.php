@@ -62,7 +62,7 @@ $startTime = "{$days}:{$hours}:{$minutes}:{$seconds}";
     <script type="text/javascript" src="./js/jquery.min.js"></script>
     <script type="text/javascript" src="./js/bootstrap.min.js"></script>
     <script type="text/javascript" src="./js/scripts.js"></script>
-    <script type="text/javascript" src="http://jzaefferer.github.com/jquery-validation/jquery.validate.js"></script>
+    <script type="text/javascript" src="./js/jquery.validate.js"></script>
     <script src="http://malsup.github.com/jquery.form.js"></script>
     <script type="text/javascript" src="./js/jquery.countdown.js"></script>    
     <script type="text/javascript">
